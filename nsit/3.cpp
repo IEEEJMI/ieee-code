@@ -1,47 +1,32 @@
 #include <iostream>
-
 using namespace std;
 
 int main()
 {
-	int t1,t2,x1,x2,y1,y2,t0;
+	int t1,t2,x1,x2;
+	float t0;
 	cin>>t1>>t2>>x1>>x2>>t0;
 
-	int i1,i2;
-	int t;
+	float min_diff = t0;
+	int y1=0, y2=0;
 
-	int closest=t0;
-
-	for (i1 = 1; i1 < x1 ; ++i1)
+	for (int i1 = 1; i1 <= x1 ; i1++)
 	{
-		for (i2 = 1; i2 < x2; ++i2)
+		for (int i2 = 1; i2 <= x2; i2++)
 		{
-			
-			t=((t1*i1)+(t2*i2))/(i1+i2);
-			
-
-			if(t0==t)
-			{
-				cout<<i1<<" "<<i2<<endl;
-				return 0;
-			} 
-
-
-			if (t0-closest>t0-t)
-			{
-				closest=t;
-
+			float t = (float)(((t1*i1)+(t2*i2))/(i1+i2));
+			float diff = (t - t0);
+			if(diff < 0) continue;
+			if(diff < min_diff) {
+				min_diff = diff;
+				cout<<min_diff<<endl;
+				if((i1+i2)>(y1+y2)) {
+					y1 = i1;
+					y2 = i2;
+				}
 			}
-
-
 		}
 	}
-
-	cout<<closest;
-
-
-
-
-
+	cout<<y1<<" "<<y2<<endl;
 	return 0;
 }
